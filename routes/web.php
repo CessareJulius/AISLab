@@ -15,11 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/users/home/', function() {
-    return view('users.home');
-});
+Route::get('/users/home/', 'UsersController@home');
 
 Route::get('persons', function() {
-    $persons = DB::table('persons')->get();
+    $persons = App\Person::all();
     dd($persons);die();
 });

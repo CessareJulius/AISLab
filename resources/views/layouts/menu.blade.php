@@ -33,7 +33,16 @@
         <li class="header"><center>OPCIONES</center></li>
         <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Perfil</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Configuracion</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Salir</span></a></li>
+        <li>
+          <a href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();">
+            <i class="fa fa-circle-o text-red"></i> <span>Salir</span>
+          </a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            {{ csrf_field() }}
+          </form>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->

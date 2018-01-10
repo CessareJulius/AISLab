@@ -77,6 +77,8 @@
           </div>
         </div>
         <!-- ./col -->
+        <?php $user = Auth::user(); ?>
+        {{ $user['username'] }}
       </div>
 
     </section>

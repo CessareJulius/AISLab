@@ -15,9 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/users/home/', 'UsersController@home');
+Route::get('/users/home/', 'UsersController@home')->middleware('auth');
 
 Route::get('persons', function() {
-    $persons = App\Person::all();
-    dd($persons);die();
+    $persons = App\People::all();
+    dd($persons);
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

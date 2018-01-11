@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="{{ asset('template/font-awesome/css/font-awesome.min.css') }}">
   <!-- Ionicons -->
   <link rel="stylesheet" href="{{ asset('template/Ionicons/css/ionicons.min.css') }}">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{{ asset('template/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('template/dist/css/AdminLTE.min.css') }}">
   <!-- AdminLTE Skins. Choose a skin from the css/skins

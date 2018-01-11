@@ -15,12 +15,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/users/home/', 'UsersController@home')->middleware('auth');
+Route::get('users', 'UsersController@index')->middleware('auth');
 
-Route::get('persons', function() {
-    $persons = App\People::all();
-    dd($persons);
-});
+Route::get('users/home', 'UsersController@home')->middleware('auth');
+
+Route::get('users/add', 'UsersController@add')->middleware('auth');
+
+Route::get('users/view/{id}', 'UsersController@view')->where('id', '[0-9]+')->middleware('auth');
+
+Route::get('users/profile/{id}', 'UsersController@view')->where('id', '[0-9]+')->middleware('auth');
+
+Route::get('users/edit/{id}', 'UsersController@edit')->where('id', '[0-9]+')->middleware('auth');
 
 Auth::routes();
 

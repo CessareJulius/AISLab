@@ -224,8 +224,8 @@
                 <img src="{{ asset('img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
 
                 <p>
-                  Cessare Julius - Administrador
-                  <small>Member since Nov. 2012</small>
+                  {{ request()->user()->username }} - {{ request()->user()->position }}
+                  <small>Miembro desde: {{ App\UserDate::created(request()->user()->created_at) }}</small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -246,13 +246,13 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                  <a href="{{ asset('/users/profile').'/'.request()->user()->id }}" class="btn btn-info btn-flat"><i class="ion ion-tshirt">&nbsp;</i>Perfil</a>
                 </div>
                 <div class="pull-right">
                   <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
-                      document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">
-                    Salir</a>
+                      document.getElementById('logout-form').submit();" class="btn btn-warning btn-flat">
+                    <i class="fa fa-sign-out text-gray">&nbsp;</i>Salir</a>
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                       {{ csrf_field() }}
                   </form>

@@ -7,7 +7,8 @@
           <img src="{{ asset('img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Cessare Julius</p>
+          <?php $user = Auth::user(); ?>
+          <p>{{ $user['username'] }}</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -25,13 +26,18 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header"><center>MENU</center></li>
-        <li class="active treeview">
-          <a href="pages/widgets.html">
-            <i class="fa fa-home"></i> <span>Inicio</span>
+        <li class="{{ Request::is('home') ? 'active' : '' }}">
+          <a href="{{ asset('/home') }}">
+            <i class="fa fa-home text-aqua"></i> <span>Inicio</span>
+          </a>
+        </li>
+        <li class="{{ Request::is('users') ? 'active' : '' }}">
+          <a href="{{ asset('/users/') }}">
+            <i class="fa fa-users text-aqua"></i> <span>Usuarios</span>
           </a>
         </li>
         <li class="header"><center>OPCIONES</center></li>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Perfil</span></a></li>
+        <li><a href="{{ asset('/users/profile').'/'.request()->user()->id }}"><i class="fa fa-circle-o text-aqua"></i> <span>Perfil</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Configuracion</span></a></li>
         <li>
           <a href="{{ route('logout') }}"

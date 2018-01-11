@@ -10,4 +10,12 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function ruta($val)
+    {
+    	if(array_search($val, explode('/', request()->url())))
+            return true;
+        else
+            return false;
+    }
 }

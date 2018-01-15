@@ -45,4 +45,14 @@ class Auth extends Facade
     {
         static::$app->make('router')->auth();
     }
+
+   /* public static function usersRoutes()
+    {
+        static::$app->make('router')->users();
+    } 
+
+    public static function peopleRoutes()
+    {
+        static::$app->make('router')->people();
+    }*/
 }

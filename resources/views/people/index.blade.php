@@ -9,7 +9,8 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ asset('/users/home') }}"><i class="fa fa-home"></i> Inicio</a></li>
-        <li class="active">Usuarios</li>
+        <li><a href="#">Personas</a></li>
+        <li class="active">Todas</li>
       </ol>
     </section>
 
@@ -19,42 +20,34 @@
 
 				<div class="box">
 		            <div class="box-header">
-		              <h3 class="box-title" style="margin-left: 38%;">Usuarios Registrados</h3>
-		              <div class="pull-right">
-		                  <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="ion ion-tshirt">&nbsp;</i>Registrar Nuevo</button>
-		                </div>
+		              <center><h3 class="box-title">Personas registradas</h3></center>
 		            </div>
 		            <!-- /.box-header -->
 		            <div class="box-body">
-		            	@unless(empty($users))
+		            	@unless(empty($people))
 		            	<table id="example1" class="table table-bordered table-hover">
 		            		<thead>
 		            			<tr>
 		            				<th>ID</th>
-		            				<th>USUARIO</th>
-		            				<th>CARGO</th>
-		            				<th>CORREO</th>
-		            				<th>STATUS</th>
-		            				<th><center>ACCIONES</center></th>
+		            				<th>CEDULA</th>
+		            				<th>NOMBRE</th>
+		            				<th>APELLIDO</th>
+		            				<th>TIPO</th>
+		            				<th>ACCIONES</th>
 		            			</tr>
 		            		</thead>
 		            		<tbody>
-		            			@foreach($users as $user)
+		            			@foreach($people as $person)
 			            			<tr>
-			            				<td>{{ $user->id }}</td>
-			            				{{-- <td>$user->people->dni</td> --}}
-			            				<td>{{ $user->username }}</td>
-			            				<td>{{ $user->position }}</td>
-			            				<td>{{ $user->email }}</td>
-			            				@if($user->active == 1)
-			            					<td>Activo</td>
-			            				@else
-			            					<td>Inactivo</td>
-			            				@endif
+			            				<td>{{ $person->id }}</td>
+			            				<td>{{ $person->dni }}</td>
+			            				<td>{{ $person->name }}</td>
+			            				<td>{{ $person->lastname }}</td>
+			            				<td>{{ $person->type }}</td>
 			            				<td>
 			            					<center>
-			            						<a class="btn btn-info btn-sm" href="{{ route('users.show', $user->id) }}">Ver</a>
-			            						<a class="btn btn-primary btn-sm" href="{{ route('users.edit', $user->id) }}">Editar</a>
+			            						<a class="btn btn-info btn-sm" href="{{ route('people.show', $person->id ) }}">Ver</a>
+			            						<a class="btn btn-primary btn-sm" href="{{ route('people.edit', $person->id ) }}">Editar</a>
 			            						<a class="btn btn-danger btn-sm" href="#">Eliminar</a>
 			            					</center>
 			            				</td>
@@ -72,8 +65,6 @@
         	</div>
       	</div>
     </section>
-
-    @include('layouts.modalUser')
 
 @endsection
 

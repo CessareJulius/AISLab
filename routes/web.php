@@ -15,18 +15,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('users', 'UsersController@index')->middleware('auth');
+//Auth::usersRoutes();
 
-Route::get('users/home', 'UsersController@home')->middleware('auth');
+//Auth::peopleRoutes();
 
-Route::get('users/add', 'UsersController@add')->middleware('auth');
+Route::group(['middleware' => ['auth']], function() {
 
-Route::get('users/view/{id}', 'UsersController@view')->where('id', '[0-9]+')->middleware('auth');
+	Route::get('profile/{id}', 'UsersController@show')->name('users.profile');
+    Route::resource('users', 'UsersController');
+});
 
-Route::get('users/profile/{id}', 'UsersController@view')->where('id', '[0-9]+')->middleware('auth');
+Route::group(['middleware' => ['auth']], function() {
 
-Route::get('users/edit/{id}', 'UsersController@edit')->where('id', '[0-9]+')->middleware('auth');
+	Route::get('people_list/{type}', 'PeopleController@indexType')->name('people.type');
+	Route::resource('people', 'PeopleController');
+
+});
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
